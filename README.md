@@ -17,3 +17,13 @@ soup = MakeSoup(url)
 ```
 
 Makes a BeautifulSoup object from a url.
+
+#### Download
+
+Usage:
+
+```python
+from SoupKitchen.Utensils import DownloadFile
+
+DownloadFile(url, filename)
+```

@@ -1,18 +1,21 @@
 # import libraries
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+import requests
 
-
-def MakeSoup(ref_page):
+def MakeSoup(url):
     '''
     Makes a BeautifulSoup object from a url.
     '''
 
-    page = urlopen(ref_page)
-    soup = BeautifulSoup(page, 'html.parser')
-
-    return soup
-
+    try:
+        headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36'} 
+        response = requests.get(url, headers=headers)
+        soup = BeautifulSoup(response.text, "html.parser")
+        return soup
+    except requests.exceptions.RequestException as e:
+        print(e)
+        exit()
 
 def DownloadFile(url, filename):
     '''
